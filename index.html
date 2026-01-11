@@ -475,77 +475,241 @@
       margin: 0 8px;
     }
 
-    /* Clouds */
+    /* Clouds - 多層次蓬鬆雲朵 */
     .clouds {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 180px;
+      height: 220px;
       z-index: 5;
+      overflow: hidden;
     }
 
-    .cloud {
-      position: absolute;
-      border-radius: 100px;
-    }
-
-    .cloud-layer-1 {
-      background: linear-gradient(180deg, #c4aeb8 0%, #d4b8c8 100%);
-      bottom: 0;
-      height: 120px;
-      width: 120%;
-      left: -10%;
-    }
-
-    .cloud-layer-2 {
-      background: #b8a5c4;
-      bottom: 60px;
-      height: 80px;
-      width: 100%;
-      left: -20%;
-    }
-
-    .cloud-layer-3 {
-      background: #a899ab;
-      bottom: 80px;
-      height: 60px;
-      width: 80%;
-      right: -10%;
-    }
-
+    /* 雲朵圓弧 */
     .cloud-puff {
       position: absolute;
-      background: #c4aeb8;
       border-radius: 50%;
     }
 
-    .cloud-puff:nth-child(1) {
-      width: 100px;
-      height: 100px;
-      bottom: 80px;
-      left: 20%;
+    /* === 第一層：最後面 - 淡粉色 === */
+    .cloud-layer-1 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 180px;
     }
 
-    .cloud-puff:nth-child(2) {
-      width: 80px;
-      height: 80px;
-      bottom: 100px;
-      left: 30%;
+    .cloud-layer-1 .c1 {
+      width: 300px;
+      height: 200px;
+      background: #d4c5ce;
+      bottom: -60px;
+      left: -50px;
     }
 
-    .cloud-puff:nth-child(3) {
-      width: 120px;
+    .cloud-layer-1 .c2 {
+      width: 250px;
+      height: 180px;
+      background: #d4c5ce;
+      bottom: -40px;
+      left: 150px;
+    }
+
+    .cloud-layer-1 .c3 {
+      width: 280px;
+      height: 190px;
+      background: #d4c5ce;
+      bottom: -50px;
+      left: 320px;
+    }
+
+    .cloud-layer-1 .c4 {
+      width: 320px;
+      height: 210px;
+      background: #d4c5ce;
+      bottom: -70px;
+      right: 200px;
+    }
+
+    .cloud-layer-1 .c5 {
+      width: 280px;
+      height: 180px;
+      background: #d4c5ce;
+      bottom: -50px;
+      right: -30px;
+    }
+
+    /* === 第二層：中間偏後 - 淺紫粉色 === */
+    .cloud-layer-2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 160px;
+    }
+
+    .cloud-layer-2 .c1 {
+      width: 260px;
+      height: 170px;
+      background: #bfadb8;
+      bottom: -50px;
+      left: -30px;
+    }
+
+    .cloud-layer-2 .c2 {
+      width: 200px;
+      height: 140px;
+      background: #bfadb8;
+      bottom: -30px;
+      left: 180px;
+    }
+
+    .cloud-layer-2 .c3 {
+      width: 240px;
+      height: 160px;
+      background: #bfadb8;
+      bottom: -45px;
+      left: 350px;
+    }
+
+    .cloud-layer-2 .c4 {
+      width: 220px;
+      height: 150px;
+      background: #bfadb8;
+      bottom: -40px;
+      right: 280px;
+    }
+
+    .cloud-layer-2 .c5 {
+      width: 280px;
+      height: 180px;
+      background: #bfadb8;
+      bottom: -55px;
+      right: 50px;
+    }
+
+    .cloud-layer-2 .c6 {
+      width: 200px;
+      height: 140px;
+      background: #bfadb8;
+      bottom: -35px;
+      right: -40px;
+    }
+
+    /* === 第三層：中間偏前 - 中紫色 === */
+    .cloud-layer-3 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 140px;
+    }
+
+    .cloud-layer-3 .c1 {
+      width: 220px;
+      height: 140px;
+      background: #9a8da0;
+      bottom: -45px;
+      left: -40px;
+    }
+
+    .cloud-layer-3 .c2 {
+      width: 180px;
       height: 120px;
-      bottom: 70px;
-      right: 25%;
+      background: #9a8da0;
+      bottom: -30px;
+      left: 140px;
     }
 
-    .cloud-puff:nth-child(4) {
-      width: 90px;
-      height: 90px;
-      bottom: 90px;
-      right: 35%;
+    .cloud-layer-3 .c3 {
+      width: 200px;
+      height: 130px;
+      background: #9a8da0;
+      bottom: -40px;
+      left: 290px;
+    }
+
+    .cloud-layer-3 .c4 {
+      width: 190px;
+      height: 125px;
+      background: #9a8da0;
+      bottom: -35px;
+      right: 320px;
+    }
+
+    .cloud-layer-3 .c5 {
+      width: 230px;
+      height: 145px;
+      background: #9a8da0;
+      bottom: -50px;
+      right: 120px;
+    }
+
+    .cloud-layer-3 .c6 {
+      width: 200px;
+      height: 130px;
+      background: #9a8da0;
+      bottom: -40px;
+      right: -50px;
+    }
+
+    /* === 第四層：最前面 - 深紫色 === */
+    .cloud-layer-4 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+    }
+
+    .cloud-layer-4 .c1 {
+      width: 200px;
+      height: 110px;
+      background: #6b6680;
+      bottom: -50px;
+      left: -20px;
+    }
+
+    .cloud-layer-4 .c2 {
+      width: 160px;
+      height: 95px;
+      background: #6b6680;
+      bottom: -40px;
+      left: 150px;
+    }
+
+    .cloud-layer-4 .c3 {
+      width: 180px;
+      height: 105px;
+      background: #6b6680;
+      bottom: -45px;
+      left: 280px;
+    }
+
+    .cloud-layer-4 .c4 {
+      width: 170px;
+      height: 100px;
+      background: #6b6680;
+      bottom: -42px;
+      right: 280px;
+    }
+
+    .cloud-layer-4 .c5 {
+      width: 190px;
+      height: 108px;
+      background: #6b6680;
+      bottom: -48px;
+      right: 100px;
+    }
+
+    .cloud-layer-4 .c6 {
+      width: 180px;
+      height: 100px;
+      background: #6b6680;
+      bottom: -45px;
+      right: -30px;
     }
 
 
@@ -1094,7 +1258,14 @@
       }
 
       .clouds {
-        height: 120px;
+        height: 160px;
+      }
+
+      .cloud-layer-1 .cloud-puff,
+      .cloud-layer-2 .cloud-puff,
+      .cloud-layer-3 .cloud-puff,
+      .cloud-layer-4 .cloud-puff {
+        transform: scale(0.7);
       }
 
       .about-content {
@@ -1251,15 +1422,43 @@
       </div>
     </div>
 
-    <!-- Clouds -->
+    <!-- Clouds - 多層次蓬鬆雲朵 -->
     <div class="clouds">
-      <div class="cloud-puff"></div>
-      <div class="cloud-puff"></div>
-      <div class="cloud-puff"></div>
-      <div class="cloud-puff"></div>
-      <div class="cloud cloud-layer-3"></div>
-      <div class="cloud cloud-layer-2"></div>
-      <div class="cloud cloud-layer-1"></div>
+      <!-- 第一層：最後面 - 深紫色 -->
+      <div class="cloud-layer-1">
+        <div class="cloud-puff c1"></div>
+        <div class="cloud-puff c2"></div>
+        <div class="cloud-puff c3"></div>
+        <div class="cloud-puff c4"></div>
+        <div class="cloud-puff c5"></div>
+      </div>
+      <!-- 第二層：中間 - 中紫色 -->
+      <div class="cloud-layer-2">
+        <div class="cloud-puff c1"></div>
+        <div class="cloud-puff c2"></div>
+        <div class="cloud-puff c3"></div>
+        <div class="cloud-puff c4"></div>
+        <div class="cloud-puff c5"></div>
+        <div class="cloud-puff c6"></div>
+      </div>
+      <!-- 第三層：前面 - 淺紫粉色 -->
+      <div class="cloud-layer-3">
+        <div class="cloud-puff c1"></div>
+        <div class="cloud-puff c2"></div>
+        <div class="cloud-puff c3"></div>
+        <div class="cloud-puff c4"></div>
+        <div class="cloud-puff c5"></div>
+        <div class="cloud-puff c6"></div>
+      </div>
+      <!-- 第四層：最前面 - 淡粉色 -->
+      <div class="cloud-layer-4">
+        <div class="cloud-puff c1"></div>
+        <div class="cloud-puff c2"></div>
+        <div class="cloud-puff c3"></div>
+        <div class="cloud-puff c4"></div>
+        <div class="cloud-puff c5"></div>
+        <div class="cloud-puff c6"></div>
+      </div>
     </div>
 
   </section>
