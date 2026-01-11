@@ -1335,6 +1335,43 @@
         font-size: 12px;
       }
     }
+
+    /* ===== Parallax Optimizations ===== */
+    .parallax-layer {
+      will-change: transform;
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Smooth parallax for clouds */
+    .cloud-layer-1,
+    .cloud-layer-2,
+    .cloud-layer-3,
+    .cloud-layer-4 {
+      will-change: transform;
+    }
+
+    .sun,
+    .rocket-container,
+    .quote,
+    .signature-area {
+      will-change: transform;
+    }
+
+    /* Disable parallax on mobile for performance */
+    @media (max-width: 768px) {
+      .cloud-layer-1,
+      .cloud-layer-2,
+      .cloud-layer-3,
+      .cloud-layer-4,
+      .sun,
+      .rocket-container,
+      .quote,
+      .signature-area,
+      .star {
+        will-change: auto;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1632,15 +1669,110 @@
       });
     });
 
-    // Parallax effect for stars on scroll
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
+    // ===== Enhanced Parallax Scrolling Effect =====
+    (function() {
+      // Check if mobile (disable parallax for performance)
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) return;
+
+      // Get elements
       const stars = document.querySelectorAll('.star');
-      stars.forEach((star, i) => {
-        const speed = 0.1 + (i * 0.02);
-        star.style.transform = `translateY(${scrolled * speed}px)`;
+      const sun = document.querySelector('.sun');
+      const rocket = document.querySelector('.rocket-container');
+      const quote = document.querySelector('.quote');
+      const signature = document.querySelector('.signature-area');
+      const cloudLayer1 = document.querySelector('.cloud-layer-1');
+      const cloudLayer2 = document.querySelector('.cloud-layer-2');
+      const cloudLayer3 = document.querySelector('.cloud-layer-3');
+      const cloudLayer4 = document.querySelector('.cloud-layer-4');
+      const hero = document.querySelector('.hero');
+
+      // Throttle function for performance
+      let ticking = false;
+
+      function updateParallax() {
+        const scrolled = window.pageYOffset;
+        const heroHeight = hero.offsetHeight;
+        
+        // Only apply parallax when in hero section
+        if (scrolled > heroHeight) {
+          ticking = false;
+          return;
+        }
+
+        // Calculate scroll progress (0 to 1)
+        const progress = scrolled / heroHeight;
+
+        // Stars - slowest movement (far background)
+        stars.forEach((star, i) => {
+          const speed = 0.05 + (i * 0.015);
+          star.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+
+        // Sun - very slow, slight rise effect
+        if (sun) {
+          sun.style.transform = `translateY(${scrolled * -0.08}px)`;
+        }
+
+        // Quote text - gentle floating up
+        if (quote) {
+          quote.style.transform = `translateY(${scrolled * -0.15}px)`;
+        }
+
+        // Rocket - rises slightly faster (main focal point)
+        if (rocket) {
+          rocket.style.transform = `translateY(${scrolled * -0.25}px)`;
+        }
+
+        // Signature - subtle movement
+        if (signature) {
+          signature.style.transform = `translateY(${scrolled * -0.1}px)`;
+        }
+
+        // Cloud layers - different speeds for depth effect
+        // Back layers move slower, front layers move faster
+        if (cloudLayer1) {
+          cloudLayer1.style.transform = `translateY(${scrolled * 0.1}px)`;
+        }
+        if (cloudLayer2) {
+          cloudLayer2.style.transform = `translateY(${scrolled * 0.2}px)`;
+        }
+        if (cloudLayer3) {
+          cloudLayer3.style.transform = `translateY(${scrolled * 0.35}px)`;
+        }
+        if (cloudLayer4) {
+          cloudLayer4.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+
+        ticking = false;
+      }
+
+      // Use requestAnimationFrame for smooth performance
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
       });
-    });
+
+      // Handle window resize
+      let resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          if (window.innerWidth <= 768) {
+            // Reset transforms on mobile
+            [sun, rocket, quote, signature, cloudLayer1, cloudLayer2, cloudLayer3, cloudLayer4].forEach(el => {
+              if (el) el.style.transform = '';
+            });
+            stars.forEach(star => star.style.transform = '');
+          }
+        }, 250);
+      });
+
+      // Initial call
+      updateParallax();
+    })();
   </script>
 </body>
 </html>
